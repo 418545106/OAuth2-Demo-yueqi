@@ -9,3 +9,4 @@ This is Demo of Spring security OAuth2
 1.账号密码方式目前使用官方接口 /oauth/token <br>
 2.短信登陆方式 先获取短信验证码 /code/sms?mobile=137xxxxxxxxx 之后通过 /authentication/mobile
 提交手机号和验证码
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
