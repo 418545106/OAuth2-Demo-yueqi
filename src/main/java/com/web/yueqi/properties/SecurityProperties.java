@@ -31,10 +31,11 @@ public class SecurityProperties {
 
     /**
      * 系统加密方式通过BCry进行加密
+     *
      * @return
      */
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

@@ -28,11 +28,11 @@ public class SmsCodeAuthenticationProvider implements AuthenticationProvider {
         SmsCodeAuthenticationToken authenticationToken = (SmsCodeAuthenticationToken) authentication;
         UserDetails user = userDetailsService.loadUserByUsername(authentication.getPrincipal().toString());
 
-        if(user == null){
+        if (user == null) {
             throw new InternalAuthenticationServiceException("无法获取用户信息");
         }
 
-        SmsCodeAuthenticationToken authenticationResult = new SmsCodeAuthenticationToken(user,user.getAuthorities());
+        SmsCodeAuthenticationToken authenticationResult = new SmsCodeAuthenticationToken(user, user.getAuthorities());
 
         authenticationResult.setDetails(authenticationToken.getDetails());
 

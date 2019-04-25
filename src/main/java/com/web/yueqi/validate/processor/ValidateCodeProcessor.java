@@ -19,6 +19,7 @@ public interface ValidateCodeProcessor {
      * <li>1.生成校验码</li>
      * <li>2.保存校验码</li>
      * <li>3.发送校验码</li>
+     *
      * @param request
      * @throws Exception
      */

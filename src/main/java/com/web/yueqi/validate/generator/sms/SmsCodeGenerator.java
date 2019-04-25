@@ -21,6 +21,7 @@ public class SmsCodeGenerator implements ValidateCodeGenerator {
 
     /**
      * 生成短信验证码
+     *
      * @param request
      * @return
      */
@@ -29,6 +30,6 @@ public class SmsCodeGenerator implements ValidateCodeGenerator {
         //获取配置中设置的短信验证码长度
         String code = RandomStringUtils.randomNumeric(securityProperties.getCode().getSms().getLength());
         //获取配置中设置的短信验证码时长
-        return new ValidateCode(code,securityProperties.getCode().getSms().getExpireIn());
+        return new ValidateCode(code, securityProperties.getCode().getSms().getExpireIn());
     }
 }

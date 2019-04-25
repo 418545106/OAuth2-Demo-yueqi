@@ -27,6 +27,7 @@ public class ValidateCodeController {
 
     /**
      * 创建验证码
+     *
      * @param request
      * @param response
      * @param type
@@ -34,7 +35,7 @@ public class ValidateCodeController {
      */
     @GetMapping("/code/{type}")
     public void createCode(HttpServletRequest request, HttpServletResponse response, @PathVariable String type) throws Exception {
-        validateCodeProcessors.get(type+"CodeProcessor").create(new ServletWebRequest(request,response));
+        validateCodeProcessors.get(type + "CodeProcessor").create(new ServletWebRequest(request, response));
     }
 
 }

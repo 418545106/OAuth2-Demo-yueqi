@@ -37,6 +37,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     /**
      * 配置spring security 路由
+     *
      * @param http
      * @throws Exception
      */
@@ -50,9 +51,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .failureHandler(failureHandler);
 
         http.apply(validateCodeSecurityConfig)
-                    .and()
+                .and()
                 .apply(smsCodeAuthenticationSecurityConfig)
-                    .and()
+                .and()
                 .csrf()
                 .disable()
                 .cors()
@@ -61,7 +62,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(SecurityPath.DEFAULT_LOGIN_PROCESSING_URL_MOBILE,
                         SecurityPath.DEFAULT_UNAUTHENTICATED_URL,
-                        SecurityPath.DEFAULT_VALIDATE_CODE_URL_PREFIX+"/*","/session/invalid","/oauth/**")
+                        SecurityPath.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*", "/session/invalid", "/oauth/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated();

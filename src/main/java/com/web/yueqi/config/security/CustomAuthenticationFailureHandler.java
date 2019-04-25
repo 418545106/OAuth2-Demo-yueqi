@@ -32,8 +32,8 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         logger.error("============== login failure !!");
-        logger.error("exception : {}",exception);
-        logger.info("authentication： {}" , JSON.toJSONString(SecurityContextHolder.getContext().getAuthentication()));
+        logger.error("exception : {}", exception);
+        logger.info("authentication： {}", JSON.toJSONString(SecurityContextHolder.getContext().getAuthentication()));
         //json返回
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         response.setContentType("application/json;charset=UTF-8");

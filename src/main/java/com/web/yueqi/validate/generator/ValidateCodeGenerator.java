@@ -12,6 +12,7 @@ public interface ValidateCodeGenerator {
 
     /**
      * 生成校验码
+     *
      * @param request
      * @return
      */

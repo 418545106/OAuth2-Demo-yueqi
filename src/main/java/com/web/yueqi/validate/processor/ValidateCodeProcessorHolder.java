@@ -28,6 +28,7 @@ public class ValidateCodeProcessorHolder {
 
     /**
      * 根据不同的校验类型 查找不同的校验码处理器
+     *
      * @param type
      * @return
      */

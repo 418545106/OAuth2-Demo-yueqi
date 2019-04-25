@@ -40,6 +40,7 @@ public class CustomUserDetailsService implements UserDetailsService, SocialUserD
 
     /**
      * 创建用户
+     *
      * @param userId
      * @return
      */
@@ -48,7 +49,7 @@ public class CustomUserDetailsService implements UserDetailsService, SocialUserD
         //根据查找到的用户信息判断用户是否被冻结
         String password = passwordEncoder.encode("123456");
 //        String password = "123456";
-        logger.info("数据库密码是:"+password);
+        logger.info("数据库密码是:" + password);
 
         return new SocialUser(userId, password,
                 true, true, true, true,

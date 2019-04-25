@@ -46,6 +46,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 
     /**
      * 登陆完成后 生成token 返回客户端
+     *
      * @param request
      * @param response
      * @param authentication
@@ -71,17 +72,17 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 
         ClientDetails clientDetails = clientDetailsService.loadClientByClientId(clientId);
 
-        if(clientDetails == null){
-            throw new UnapprovedClientAuthenticationException("clientId对应配置信息不存在:"+clientId);
-        }else if(passwordEncoder.matches(clientDetails.getClientSecret(),clientSecret)){
-            throw new UnapprovedClientAuthenticationException("clientSecret不匹配:"+clientId);
+        if (clientDetails == null) {
+            throw new UnapprovedClientAuthenticationException("clientId对应配置信息不存在:" + clientId);
+        } else if (passwordEncoder.matches(clientDetails.getClientSecret(), clientSecret)) {
+            throw new UnapprovedClientAuthenticationException("clientSecret不匹配:" + clientId);
         }
         //生成 TokenRequest
-        TokenRequest tokenRequest = new TokenRequest(MapUtils.EMPTY_MAP,clientId,clientDetails.getScope(),"custom");
+        TokenRequest tokenRequest = new TokenRequest(MapUtils.EMPTY_MAP, clientId, clientDetails.getScope(), "custom");
 
         OAuth2Request oAuth2Request = tokenRequest.createOAuth2Request(clientDetails);
 
-        OAuth2Authentication oAuth2Authentication = new OAuth2Authentication(oAuth2Request,authentication);
+        OAuth2Authentication oAuth2Authentication = new OAuth2Authentication(oAuth2Request, authentication);
 
         OAuth2AccessToken oAuth2AccessToken = defaultAuthorizationServerTokenServices.createAccessToken(oAuth2Authentication);
 
@@ -89,11 +90,12 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
         response.getWriter().write(objectMapper.writeValueAsString(oAuth2AccessToken));
     }
 
-    /**解密header中的参数
+    /**
+     * 解密header中的参数
      * Decodes the header into a username and password.
      *
      * @throws BadCredentialsException if the Basic header is not present or is not valid
-     * Base64
+     *                                 Base64
      */
     private String[] extractAndDecodeHeader(String header, HttpServletRequest request)
             throws IOException {
@@ -102,8 +104,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
         byte[] decoded;
         try {
             decoded = Base64.getDecoder().decode(base64Token);
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             throw new BadCredentialsException(
                     "Failed to decode basic authentication token");
         }
@@ -115,6 +116,6 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
         if (delim == -1) {
             throw new BadCredentialsException("Invalid basic authentication token");
         }
-        return new String[] { token.substring(0, delim), token.substring(delim + 1) };
+        return new String[]{token.substring(0, delim), token.substring(delim + 1)};
     }
 }

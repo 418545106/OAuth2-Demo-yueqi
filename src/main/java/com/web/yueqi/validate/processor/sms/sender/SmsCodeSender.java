@@ -9,8 +9,9 @@ public interface SmsCodeSender {
 
     /**
      * 发送短信
+     *
      * @param mobile
      * @param code
      */
-    void send(String mobile,String code);
+    void send(String mobile, String code);
 }

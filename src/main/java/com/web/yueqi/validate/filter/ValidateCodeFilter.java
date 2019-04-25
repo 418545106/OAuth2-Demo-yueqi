@@ -58,26 +58,28 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
 
     /**
      * 初始化bean时需要把配置中的urls装配到Set集合中
+     *
      * @throws ServletException
      */
     @Override
     public void afterPropertiesSet() throws ServletException {
         super.afterPropertiesSet();
 
-        urlMap.put(SecurityPath.DEFAULT_LOGIN_PROCESSING_URL_MOBILE,ValidateCodeType.SMS);
+        urlMap.put(SecurityPath.DEFAULT_LOGIN_PROCESSING_URL_MOBILE, ValidateCodeType.SMS);
         addUrlToMap(securityProperties.getCode().getSms().getUrl(), ValidateCodeType.SMS);
 
     }
 
     /**
      * 将配置文件中配置的需要校验验证码的URL根据校验的类型放入Map
+     *
      * @param urlString
      * @param type
      */
-    protected void addUrlToMap(String urlString, ValidateCodeType type){
-        if(StringUtils.isNotBlank(urlString)){
-            String[] urls = StringUtils.splitByWholeSeparatorPreserveAllTokens(urlString,",");
-            for(String url : urls){
+    protected void addUrlToMap(String urlString, ValidateCodeType type) {
+        if (StringUtils.isNotBlank(urlString)) {
+            String[] urls = StringUtils.splitByWholeSeparatorPreserveAllTokens(urlString, ",");
+            for (String url : urls) {
                 urlMap.put(url, type);
             }
         }
@@ -85,6 +87,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
 
     /**
      * 调用校验码控制器获取校验码处理器，并且验证校验码
+     *
      * @param request
      * @param response
      * @param filterChain
@@ -99,7 +102,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
             logger.info("校验请求(" + request.getRequestURI() + ")中的验证码,验证码类型" + type);
             try {
                 validateCodeProcessorHolder.findValidateCodeProcessor(type)
-                    .validate(new ServletWebRequest(request, response));
+                        .validate(new ServletWebRequest(request, response));
                 logger.info("验证码校验通过");
             } catch (ValidateCodeException exception) {
                 customizeAuthenticationFailureHandler.onAuthenticationFailure(request, response, exception);

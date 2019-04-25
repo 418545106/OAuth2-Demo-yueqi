@@ -44,7 +44,7 @@ public class SmsCodeAuthenticationFilter extends
                                                 HttpServletResponse response) throws AuthenticationException {
         if (postOnly && !request.getMethod().equals("POST")) {
             throw new AuthenticationServiceException(
-                "Authentication method not supported: " + request.getMethod());
+                    "Authentication method not supported: " + request.getMethod());
         }
 
         String mobile = obtainMobile(request);
@@ -75,9 +75,9 @@ public class SmsCodeAuthenticationFilter extends
      * Provided so that subclasses may configure what is put into the authentication
      * request's details property.
      *
-     * @param request that an authentication request is being created for
+     * @param request     that an authentication request is being created for
      * @param authRequest the authentication request object that should have its details
-     * set
+     *                    set
      */
     protected void setDetails(HttpServletRequest request,
                               SmsCodeAuthenticationToken authRequest) {

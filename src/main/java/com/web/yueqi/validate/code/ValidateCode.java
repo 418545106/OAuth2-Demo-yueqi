@@ -27,18 +27,19 @@ public class ValidateCode implements Serializable {
      */
     private LocalDateTime expireTime;
 
-    public ValidateCode(String code, LocalDateTime expireTime){
+    public ValidateCode(String code, LocalDateTime expireTime) {
         this.code = code;
         this.expireTime = expireTime;
     }
 
-    public ValidateCode(String code, Integer expireIn){
+    public ValidateCode(String code, Integer expireIn) {
         this.code = code;
         this.expireTime = LocalDateTime.now().plusSeconds(expireIn);
     }
 
     /**
      * 校验是否已经过期
+     *
      * @return
      */
     public boolean isExpried() {

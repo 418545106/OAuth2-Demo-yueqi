@@ -63,6 +63,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     /**
      * 将配置文件中配置的客户端属性放入到内存中
+     *
      * @param clients
      * @throws Exception
      */
@@ -88,6 +89,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     /**
      * 配置Token
+     *
      * @param endpoints
      * @throws Exception
      */
@@ -96,7 +98,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         endpoints
                 .tokenStore(jwtTokenStore)
                 .authenticationManager(authenticationManager);
-        if(jwtAccessTokenConverter != null && jwtTokenEnhancer != null){
+        if (jwtAccessTokenConverter != null && jwtTokenEnhancer != null) {
             TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
             List<TokenEnhancer> enhancers = new ArrayList<>();
             //向token中加入信息

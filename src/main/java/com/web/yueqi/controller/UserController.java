@@ -17,13 +17,14 @@ public class UserController {
 
     /**
      * 获取所有信息
+     *
      * @return
      */
     @GetMapping("/user")
-    public List<UserInfo> queryAll(){
-        UserInfo u1 = new UserInfo(1,"uuz",17);
-        UserInfo u2 = new UserInfo(1,"uuz",17);
-        UserInfo u3 = new UserInfo(1,"uuz",17);
+    public List<UserInfo> queryAll() {
+        UserInfo u1 = new UserInfo(1, "uuz", 17);
+        UserInfo u2 = new UserInfo(1, "uuz", 17);
+        UserInfo u3 = new UserInfo(1, "uuz", 17);
         List<UserInfo> us = new ArrayList<>();
         us.add(u1);
         us.add(u2);

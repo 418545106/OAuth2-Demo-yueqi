@@ -18,7 +18,7 @@ import java.util.Map;
  * @Date: 2019/3/4 0004 14:03
  * @Description: 抽象的验证码生成器，具体的方法由子类实现
  */
-public abstract class AbstractVaildateCodeProcessor<C extends ValidateCode> implements ValidateCodeProcessor{
+public abstract class AbstractVaildateCodeProcessor<C extends ValidateCode> implements ValidateCodeProcessor {
 
     /**
      * 验证码的操作类
@@ -36,6 +36,7 @@ public abstract class AbstractVaildateCodeProcessor<C extends ValidateCode> impl
 
     /**
      * 发送校验码，由子类实现不同的校验码发送方式
+     *
      * @param request
      * @param validateCode
      * @throws Exception
@@ -44,9 +45,9 @@ public abstract class AbstractVaildateCodeProcessor<C extends ValidateCode> impl
 
     @Override
     public void create(ServletWebRequest request) throws Exception {
-        C validateCode =generate(request);
-        save(request,validateCode);
-        send(request,validateCode);
+        C validateCode = generate(request);
+        save(request, validateCode);
+        send(request, validateCode);
     }
 
     @Override
@@ -85,33 +86,36 @@ public abstract class AbstractVaildateCodeProcessor<C extends ValidateCode> impl
 
     /**
      * 保存校验码
+     *
      * @param request
      * @param validateCode
      */
-    private void save(ServletWebRequest request, C validateCode){
-        ValidateCode code = new ValidateCode(validateCode.getCode(),validateCode.getExpireTime());
-        validateCodeRepository.save(request,code,getValidateCodeType(request));
+    private void save(ServletWebRequest request, C validateCode) {
+        ValidateCode code = new ValidateCode(validateCode.getCode(), validateCode.getExpireTime());
+        validateCodeRepository.save(request, code, getValidateCodeType(request));
     }
 
     /**
      * 通过getProcessorType()获取的校验码类型生成相应的校验码
+     *
      * @param request
      * @return
      */
-    private C generate(ServletWebRequest request){
+    private C generate(ServletWebRequest request) {
         String type = getProcessorType(request);
-        ValidateCodeGenerator validateCodeGenerator = validateCodeGenerators.get(type+"CodeGenerator");
+        ValidateCodeGenerator validateCodeGenerator = validateCodeGenerators.get(type + "CodeGenerator");
         return (C) validateCodeGenerator.generate(request);
 
     }
 
     /**
      * 根据请求的url中的信息判断使用哪种验证码
+     *
      * @param request
      * @return
      */
-    private String getProcessorType(ServletWebRequest request){
-        return StringUtils.substringAfter(request.getRequest().getRequestURI(),"/code/");
+    private String getProcessorType(ServletWebRequest request) {
+        return StringUtils.substringAfter(request.getRequest().getRequestURI(), "/code/");
     }
 
     /**

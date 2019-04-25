@@ -11,7 +11,7 @@ public enum ValidateCodeType {
     /**
      * 图形验证码
      */
-    IMAGE{
+    IMAGE {
         @Override
         public String getParamNameOnValidate() {
             return SecurityPath.DEFAULT_PARAMETER_NAME_CODE_IMAGE;
@@ -20,7 +20,7 @@ public enum ValidateCodeType {
     /**
      * 短信验证码
      */
-    SMS{
+    SMS {
         @Override
         public String getParamNameOnValidate() {
             return SecurityPath.DEFAULT_PARAMETER_NAME_CODE_SMS;
