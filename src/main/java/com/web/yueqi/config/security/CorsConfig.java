@@ -37,6 +37,10 @@ public class CorsConfig implements Filter {
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with, authorization");
 
+        //支持前台发送cookie
+        //但是还需要response.setHeader("Access-Control-Allow-Origin", "*");不能设置为*，必须给出明确来源
+//        response.setHeader("Access-Control-Allow-Credentials","true");
+
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
         } else {
